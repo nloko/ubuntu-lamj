@@ -37,6 +37,14 @@ EOF
 )
 echo "${VHOST}" > /etc/tomcat7/tomcat-users.xml 
 
+# setup project root
+PROJECT=$(cat <<EOF
+<Context path="/${PROJECTFOLDER}" 
+	docBase="/var/www/html/${PROJECTFOLDER}" allowLinking="true"/>
+EOF
+)
+echo "${PROJECT}" > /etc/tomcat7/Catalina/localhost/myproject.xml 
+
 # restart apache
 sudo service tomcat7 restart
 
